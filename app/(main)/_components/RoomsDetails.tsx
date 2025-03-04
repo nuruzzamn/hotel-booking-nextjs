@@ -1,5 +1,6 @@
 import React from "react";
 import PropertyCard from "./PropertyCard";
+import ServiceFeatures from "./ServiceFeatures";
 
 const RoomsDetails = () => {
   return (
@@ -50,6 +51,8 @@ const RoomsDetails = () => {
             <PropertyCard />
             <PropertyCard />
           </div>
+          {/* tag : ServiceFeatures  */}
+          <ServiceFeatures />
         </div>
       </div>
     </>
