@@ -7,14 +7,15 @@ import {
   MdKeyboardArrowLeft,
   MdPlayCircle,
 } from "react-icons/md";
-import img1 from "@/public/img/banner-1.jpg";
-import img2 from "@/public/img/banner-2.png";
-import img3 from "@/public/img/banner-3.png";
+import img1 from "@/public/img/slide-1.png";
+import img2 from "@/public/img/slide-2.jpg";
+import img3 from "@/public/img/slide-3.jpg";
+import img4 from "@/public/img/slide-4.png";
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const images = [img1, img2, img3];
+  const images = [img1, img2, img3, img4];
 
   // Auto-Sliding images with interval
   useEffect(() => {
@@ -40,12 +41,24 @@ const Home = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto relative w-full overflow-hidden min-h-28 md:min-h-96">
+    <div className="max-w-7xl mx-auto relative w-full overflow-hidden min-h-72 md:min-h-96">
+      <div className="absolute z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-950 text-center">
+        <div className="text-lg font-semibold">WELCOME TO</div>
+        <div className="text-2xl md:text-5xl font-bold md:pt-2 md:pb-5">Hotel Paradise</div>
+        <div className="text-sm font-normal">
+          Book your stay and enjoy Luxury redefined at the most affordable
+          rates.
+        </div>
+
+        <button className="bg-[#DFAA5B] text-white px-4 py-2 rounded-full mt-4">
+          Book Now
+        </button>
+      </div>
       {/* tag : Slider Container */}
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-transform duration-700 ease-in-out`}
+          className={`absolute inset-0 transition-transform duration-700 ease-in-out bg-black opacity-70`}
           style={{ transform: `translateX(${100 * (index - activeIndex)}%)` }}
         >
           <Image
