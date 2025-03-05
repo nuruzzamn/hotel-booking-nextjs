@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const BlogSection = () => {
   const blogs = [
@@ -29,7 +30,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-10 bg-white">
       <div className="text-center">
         <p className="text-yellow-600 uppercase text-sm font-semibold">
           Our Blog
@@ -39,7 +40,7 @@ const BlogSection = () => {
         </h2>
       </div>
 
-      <div className="flex basis-full items-center justify-center gap-y-4 md:gap-8 mt-10">
+      <div className="flex flex-wrap basis-full items-center justify-center gap-y-4 md:gap-4 mt-10 mx-auto">
         {blogs.map((blog, index) => (
           <div
             key={index}
@@ -66,12 +67,12 @@ const BlogSection = () => {
               <h3 className="text-lg font-semibold text-gray-900 mt-2">
                 {blog.title}
               </h3>
-              <a
+              <Link
                 href={blog.link}
                 className="text-yellow-600 font-semibold text-sm mt-2 inline-block"
               >
                 READ MORE →
-              </a>
+              </Link>
             </div>
           </div>
         ))}
