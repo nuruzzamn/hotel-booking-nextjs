@@ -5,7 +5,7 @@ import ServiceFeatures from "./ServiceFeatures";
 const RoomsDetails = () => {
   return (
     <>
-      <div className=" py-10 bg-[#F7F7F7]">
+      <div className="bg-[#F7F7F7]">
         {/* tag : title section */}
         <div className="max-w-7xl mx-auto px-6 ">
           {/* top section: title and category button */}
