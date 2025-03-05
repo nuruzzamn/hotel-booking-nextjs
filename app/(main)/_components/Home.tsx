@@ -113,7 +113,7 @@ const Home = () => {
           onClick={() => setIsVideoOpen(true)}
           className="absolute top-10/12 right-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg animate-pulse hover:scale-110 transition-all"
         >
-          <MdPlayCircle size={48} className="text-gray-100" />
+          <MdPlayCircle size={25} className="text-red-200" />
         </button>
 
         {/* tag : Video Popup */}
@@ -140,7 +140,7 @@ const Home = () => {
       </div>
 
       {/* bottom section : read more*/}
-      <div className=" bg-gray-100 mx-auto px-6 py-10">
+      <div className=" bg-gray-100 mx-auto px-6 ">
         <section className=" max-w-7xl container mx-auto px-6 py-16 flex flex-col lg:flex-row items-center">
           {/* Left Content */}
           <div className="lg:w-1/2 space-y-4">
