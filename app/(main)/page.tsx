@@ -1,5 +1,6 @@
 import BlogSection from "./_components/BlogSection";
 import Home from "./_components/Home";
+import ReservationContent from "./_components/ReservationContent";
 import RoomsDetails from "./_components/RoomsDetails";
 
 const page: React.FC = async () => {
@@ -8,6 +9,7 @@ const page: React.FC = async () => {
       <Home />
       <RoomsDetails />
       <BlogSection />
+      <ReservationContent />
     </div>
   );
 };
