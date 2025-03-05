@@ -23,7 +23,7 @@ const ServiceFeatures = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center gap-10 py-10 md:py-16">
+    <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-10 py-10 md:py-16">
       {features.map((feature, index) => (
         <div
           key={index}
@@ -32,8 +32,12 @@ const ServiceFeatures = () => {
           <div className="flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full">
             {feature.icon}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900">{feature.title}</h3>
-          <p className="text-gray-600 text-sm max-w-xs">{feature.description}</p>
+          <h3 className="text-lg font-semibold text-gray-900">
+            {feature.title}
+          </h3>
+          <p className="text-gray-600 text-sm max-w-xs">
+            {feature.description}
+          </p>
         </div>
       ))}
     </div>
