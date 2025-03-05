@@ -23,7 +23,7 @@ const ServiceFeatures = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-10 py-10 md:py-16">
+    <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-10 py-10">
       {features.map((feature, index) => (
         <div
           key={index}
