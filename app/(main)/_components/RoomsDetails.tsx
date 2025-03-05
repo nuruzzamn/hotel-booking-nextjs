@@ -4,14 +4,14 @@ import ServiceFeatures from "./ServiceFeatures";
 
 const RoomsDetails = () => {
   return (
-    <>
-      <div className="bg-[#F7F7F7]">
-        {/* tag : title section */}
-        <div className="max-w-7xl mx-auto px-6 ">
-          {/* top section: title and category button */}
-          <div className="flex justify-between flex-col md:flex-row md:items-end py-10">
-            {/* left section: title */}
-            <div className="space-y-4 text-left">
+    <div className="bg-[#F7F7F7] py-10">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Title Section */}
+        <div className="flex flex-col-reverse md:flex-row md:items-end justify-between pb-10 gap-y-10">
+          {/* Left Section: Title, room category button */}
+          <div className="space-y-10">
+            {/* tag: Title */}
+            <div className="space-y-2 md:space-y-4 text-left">
               <p className="text-[#DFAA5B] uppercase font-medium">
                 Accommodations
               </p>
@@ -19,43 +19,102 @@ const RoomsDetails = () => {
                 Our Luxury Rooms
               </h2>
             </div>
-
-            {/* right section: room category button */}
-            <div className="flex gap-4 pt-4 md:pt-0">
-              <button className="bg-white hover:bg-[#DFAA5B] text-black px-2 py-1 md:px-4 md:py-2 rounded-md flex items-center gap-2 transition select-none">
+            {/* Room Category Buttons */}
+            <div className="flex flex-wrap gap-2 md:gap-4">
+              <button className="bg-[#DFAA5B] hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 All Rooms
               </button>
-
-              <button className="bg-white hover:bg-[#DFAA5B] text-black px-2 py-1 md:px-4 md:py-2 rounded-md flex items-center gap-2 transition select-none">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Luxury
               </button>
-
-              <button className="bg-white hover:bg-[#DFAA5B] text-black px-2 py-1 md:px-4 md:py-2 rounded-md flex items-center gap-2 transition select-none">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Single
               </button>
-
-              <button className="bg-white hover:bg-[#DFAA5B] text-black px-2 py-1 md:px-4 md:py-2 rounded-md flex items-center gap-2 transition select-none">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Family
               </button>
             </div>
           </div>
-          {/* bottom section: booking card details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
+
+          {/* Right Section: Booking Form */}
+          <div className="space-y-6 w-full md:w-auto bg-white p-3 md:p-6 rounded-lg shadow-lg">
+            {/* Booking Inputs Section */}
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-row justify-between md:justify-normal gap-4">
+                {/* Check-in Date */}
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="checkin"
+                    className="text-sm font-semibold text-gray-700 mb-1"
+                  >
+                    Check-in Date
+                  </label>
+                  <input
+                    type="date"
+                    id="checkin"
+                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
+                    aria-label="Select check-in date"
+                  />
+                </div>
+
+                {/* Check-out Date */}
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="checkout"
+                    className="text-sm font-semibold text-gray-700 mb-1"
+                  >
+                    Check-out Date
+                  </label>
+                  <input
+                    type="date"
+                    id="checkout"
+                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
+                    aria-label="Select check-out date"
+                  />
+                </div>
+              </div>
+
+              {/* Guests Dropdown */}
+              <div className="flex flex-col">
+                <label
+                  htmlFor="guests"
+                  className="text-sm font-semibold text-gray-700 mb-1"
+                >
+                  Room Type
+                </label>
+                <select
+                  id="guests"
+                  className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] cursor-pointer transition-all"
+                  aria-label="Select room type"
+                >
+                  <option value="">All Rooms</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="single">Single</option>
+                  <option value="family">Family</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4">
+              <button className="bg-[#DFAA5B] hover:bg-[#c2924e] text-white font-medium px-6 py-2 rounded-md transition-all shadow-md">
+                Check Availability
+              </button>
+            </div>
           </div>
-          {/* tag : ServiceFeatures  */}
-          <ServiceFeatures />
         </div>
+
+        {/* Property Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[...Array(9)].map((_, i) => (
+            <PropertyCard key={i} />
+          ))}
+        </div>
+
+        {/* Services Section */}
+        <ServiceFeatures />
       </div>
-    </>
+    </div>
   );
 };
 
