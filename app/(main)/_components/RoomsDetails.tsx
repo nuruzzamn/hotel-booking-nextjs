@@ -4,7 +4,7 @@ import ServiceFeatures from "./ServiceFeatures";
 
 const RoomsDetails = () => {
   return (
-    <div className="bg-[#F7F7F7] py-10">
+    <div className="bg-[#F7F7F7] pt-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Title Section */}
         <div className="flex flex-col-reverse md:flex-row md:items-end justify-between pb-10 gap-y-10">
@@ -39,40 +39,40 @@ const RoomsDetails = () => {
           {/* Right Section: Booking Form */}
           <div className="space-y-6 w-full md:w-auto bg-white p-3 md:p-6 rounded-lg shadow-lg">
             {/* Booking Inputs Section */}
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex flex-row justify-between md:justify-normal gap-4">
-                {/* Check-in Date */}
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="checkin"
-                    className="text-sm font-semibold text-gray-700 mb-1"
-                  >
-                    Check-in Date
-                  </label>
-                  <input
-                    type="date"
-                    id="checkin"
-                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
-                    aria-label="Select check-in date"
-                  />
-                </div>
-
-                {/* Check-out Date */}
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="checkout"
-                    className="text-sm font-semibold text-gray-700 mb-1"
-                  >
-                    Check-out Date
-                  </label>
-                  <input
-                    type="date"
-                    id="checkout"
-                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
-                    aria-label="Select check-out date"
-                  />
-                </div>
+            <div className="flex flex-wrap md:flex-row gap-4">
+              {/* <div className="flex flex-row justify-between md:justify-normal gap-4"> */}
+              {/* Check-in Date */}
+              <div className="flex flex-col">
+                <label
+                  htmlFor="checkin"
+                  className="text-sm font-semibold text-gray-700 mb-1"
+                >
+                  Check-in Date
+                </label>
+                <input
+                  type="date"
+                  id="checkin"
+                  className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
+                  aria-label="Select check-in date"
+                />
               </div>
+
+              {/* Check-out Date */}
+              <div className="flex flex-col">
+                <label
+                  htmlFor="checkout"
+                  className="text-sm font-semibold text-gray-700 mb-1"
+                >
+                  Check-out Date
+                </label>
+                <input
+                  type="date"
+                  id="checkout"
+                  className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#DFAA5B] focus:border-[#DFAA5B] transition-all"
+                  aria-label="Select check-out date"
+                />
+              </div>
+              {/* </div> */}
 
               {/* Guests Dropdown */}
               <div className="flex flex-col">
