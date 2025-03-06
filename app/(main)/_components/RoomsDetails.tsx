@@ -5,7 +5,7 @@ import ServiceFeatures from "./ServiceFeatures";
 const RoomsDetails = () => {
   return (
     <div className="bg-[#F7F7F7] pt-10">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-2 md:px-6">
         {/* Title Section */}
         <div className="flex flex-col-reverse md:flex-row md:items-end justify-between pb-10 gap-y-10">
           {/* Left Section: Title, room category button */}
@@ -105,7 +105,7 @@ const RoomsDetails = () => {
         </div>
 
         {/* Property Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-4 space-y-1 md:space-y-0">
           {[...Array(9)].map((_, i) => (
             <PropertyCard key={i} />
           ))}
