@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
   title: "Comprehensive Hotel Management System",
-  description: "Streamlining hotel operations with booking, billing, and guest management.",
+  description:
+    "Streamlining hotel operations with booking, billing, and guest management.",
 };
 
 export default function RootLayout({
@@ -20,11 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <SessionProvider>
+        <body className={`${inter.variable} antialiased`}>{children}</body>
+      </SessionProvider>
     </html>
   );
 }
