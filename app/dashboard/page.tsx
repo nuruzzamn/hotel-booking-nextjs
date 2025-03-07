@@ -1,29 +1,38 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { auth } from "../auth";
 
 import { redirect } from "next/navigation";
-import Logout from "@/components/Logout";
+import Hotels from "./_components/Hotels";
 
-const Dashboard = async () => {
+const page = async () => {
   const session = await auth();
 
-  if (!session?.user) redirect("/");
+  if (!session?.user) {
+    redirect("/");
+  } else {
+    // redirect("/dashboard");
+  }
 
   return (
-    <div className="flex flex-col items-center m-4">
-      <h1 className="text-3xl my-2">
-        Welcome, {session?.user?.name} from dashboard
-      </h1>
-      <Image
-        src={session?.user?.image || ""}
-        alt={session?.user?.name || ""}
-        width={72}
-        height={72}
-        className="rounded-full"
-      />
-      <Logout />
-    </div>
+    <>
+      {/* <div className="max-w-7xl mx-auto px-4 md:px-8 flex gap-4 py-10">
+        <Image
+          src={session?.user?.image || ""}
+          alt={session?.user?.name || ""}
+          width={72}
+          height={72}
+          className="rounded-full"
+        />
+        <div className="text-xl flex items-center">{session?.user?.name}</div>
+      </div>
+
+      <Dashboard /> */}
+
+      {/* <h1 className="text-2xl font-semibold px-6 pt-4">My Dashboard</h1> */}
+      {/* <Dashboard /> */}
+      <Hotels />
+    </>
   );
 };
 
-export default Dashboard;
+export default page;
