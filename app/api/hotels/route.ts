@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     const uint8Array = new Uint8Array(imageBuffer);
     fs.writeFileSync(imagePath, uint8Array);
 
-    // Create product in database
+    // Create in database
     const product = await prisma.hotels.create({
       data: {
         image: `${imageFile.name}`,
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { product, message: "Product created successfully" },
+      { product, message: "Hotel created successfully" },
       { status: 201 }
     );
   } catch (error) {
@@ -92,7 +92,7 @@ export async function DELETE(req: Request) {
 
   if (!id) {
     return NextResponse.json(
-      { message: "Product ID is required." },
+      { message: "Hotel ID is required." },
       { status: 400 }
     );
   }
@@ -108,7 +108,7 @@ export async function DELETE(req: Request) {
     });
 
     return NextResponse.json(
-      { message: "Product deleted successfully" },
+      { message: "Hotel deleted successfully" },
       { status: 200 }
     );
   } catch (error) {
@@ -120,13 +120,13 @@ export async function DELETE(req: Request) {
   }
 }
 
-// tag : update products
+// tag : update hotels
 export async function PATCH(req: Request) {
   try {
     const data = await req.formData(); 
 
     // Extract data from form
-    const id = data.get("productId") as string;
+    const id = data.get("hotelId") as string;
     const imageFile = data.get("image") as File;
     const name = data.get("name") as string;
     const category = data.get("category") as string;
@@ -138,19 +138,19 @@ export async function PATCH(req: Request) {
 
     if (!id) {
       return NextResponse.json(
-        { message: "Product ID is required." },
+        { message: "Hotel id is required." },
         { status: 400 }
       );
     }
 
-    // Check if the product exists
+    // Check if the hotel exists
     const existingProduct = await prisma.hotels.findUnique({
       where: { id: (id) },
     });
 
     if (!existingProduct) {
       return NextResponse.json(
-        { message: "Product not found." },
+        { message: "Hotel not found." },
         { status: 404 }
       );
     }
@@ -178,7 +178,7 @@ export async function PATCH(req: Request) {
       fs.writeFileSync(savePath, uint8Array);
     }
 
-    // Update product details
+    // Update hotel details
     const updatedProduct = await prisma.hotels.update({
       where: { id: (id) },
       data: {
@@ -194,19 +194,19 @@ export async function PATCH(req: Request) {
     });
 
     return NextResponse.json(
-      { product: updatedProduct, message: "Product updated successfully" },
+      { product: updatedProduct, message: "Hotel updated successfully" },
       { status: 200 }
     );
   } catch (error: unknown) {
     // Check if the error is an instance of Error
     if (error instanceof Error) {
       return NextResponse.json(
-        { message: "Failed to update product", details: error.message },
+        { message: "Failed to update hotel", details: error.message },
         { status: 500 }
       );
     } else {
       return NextResponse.json(
-        { message: "Failed to update product", details: "Unknown error" },
+        { message: "Failed to update hotel", details: "Unknown error" },
         { status: 500 }
       );
     }
