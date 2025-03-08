@@ -54,7 +54,7 @@ const Home = () => {
             rates.
           </div>
 
-          <button className="bg-[#DFAA5B] text-white px-4 py-2 rounded-full mt-4">
+          <button className="bg-[#DFAA5B] text-white px-4 py-2 rounded-full mt-4 cursor-pointer">
             Book Now
           </button>
         </div>
@@ -111,7 +111,7 @@ const Home = () => {
         {/* tag : Video Play Button */}
         <button
           onClick={() => setIsVideoOpen(true)}
-          className="absolute top-10/12 right-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg animate-pulse hover:scale-110 transition-all"
+          className="absolute top-10/12 right-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg animate-pulse hover:scale-110 transition-all cursor-pointer"
         >
           <MdPlayCircle size={25} className="text-red-200" />
         </button>
@@ -155,7 +155,7 @@ const Home = () => {
               destination on the map. They are looking for a memorable
               experience and to make new friends along the way.
             </p>
-            <button className="bg-[#DFAA5B] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-yellow-800 transition">
+            <button className="bg-[#DFAA5B] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-yellow-800 transition cursor-pointer">
               READ MORE →
             </button>
           </div>

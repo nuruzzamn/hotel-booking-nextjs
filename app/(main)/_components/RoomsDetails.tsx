@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import PropertyCard from "./PropertyCard";
 import ServiceFeatures from "./ServiceFeatures";
-import { baseUrl } from "@/lib/utils";
 import TablePagination from "@/app/dashboard/_components/TablePagination";
 
 interface Hotel {

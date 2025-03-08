@@ -64,7 +64,7 @@ export default function PropertyCard({ hotel: hotel }: { hotel: Hotel }) {
           href={`/hotel/${hotel?.id}`}
         >
           {/* Action Button */}
-          <button className="mt-2 w-full bg-yellow-700 text-white py-2 rounded-lg font-medium hover:bg-yellow-800 transition">
+          <button className="mt-2 w-full bg-yellow-700 text-white py-2 rounded-lg cursor-pointer font-medium hover:bg-yellow-800 transition">
             View Details
           </button>
         </Link>

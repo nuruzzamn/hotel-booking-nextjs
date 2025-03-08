@@ -81,12 +81,12 @@ const TablePagination: React.FC<PaginationProps> = ({
           onChange={(e) => setItemsPerPage(Number(e.target.value))} // Ensure to parse to number
           className='w-full h-8 px-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 cursor-pointer text-sm md:text-base'
         >
-          <option value='10'>10</option>
-          <option value='20'>20</option>
+          <option value='10'>8</option>
+          {/* <option value='20'>20</option>
           <option value='50'>50</option>
           <option value='100'>100</option>
           <option value='200'>200</option>
-          <option value='500'>500</option>
+          <option value='500'>500</option> */}
         </select>
       </div>
     </div>
