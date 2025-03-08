@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import PropertyCard from "./PropertyCard";
 import ServiceFeatures from "./ServiceFeatures";
 import { baseUrl } from "@/lib/utils";
+import TablePagination from "@/app/dashboard/_components/TablePagination";
 
 interface Hotel {
   id: number;
@@ -13,34 +15,24 @@ interface Hotel {
   availableRooms: string;
   description: string;
   rating: string;
+  length?: number;
 }
 
-const RoomsDetails = async () => {
-  let allHotels: Hotel[] = [];
+const RoomsDetails = ({ hotels: hotels }: { hotels: Hotel[] }) => {
+  const [itemsPerPage, setItemsPerPage] = useState<number>(8);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  try {
-    // Perform the fetch inside the component
-    const response = await fetch(`${baseUrl}/api/hotels`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store", // Ensures no caching for up-to-date data
-    });
+  if (hotels.length === 0) return;
 
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch data: ${response.status} ${response.statusText}`
-      );
-    }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = hotels.slice(indexOfFirstItem, indexOfLastItem);
 
-    allHotels = await response.json();
-  } catch (error) {
-    console.error("Error fetching home data:", error);
-  }
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const totalPages = Math.ceil(hotels?.length / itemsPerPage);
 
-  console.log("allHotels", allHotels);
-  
+  // console.log("allHotels", allHotels);
+
   return (
     <div className="bg-[#F7F7F7] pt-10">
       <div className="max-w-7xl mx-auto px-2 md:px-6">
@@ -59,16 +51,16 @@ const RoomsDetails = async () => {
             </div>
             {/* Room Category Buttons */}
             <div className="flex flex-wrap gap-2 md:gap-4">
-              <button className="bg-[#DFAA5B] hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
+              <button className="bg-[#DFAA5B] hover:bg-[#DFAA5B] hover:text-white cursor-pointer text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 All Rooms
               </button>
-              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white cursor-pointer text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Luxury
               </button>
-              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white cursor-pointer text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Single
               </button>
-              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
+              <button className="bg-gray-100 hover:bg-[#DFAA5B] hover:text-white cursor-pointer text-gray-800 font-medium px-4 py-2 rounded-md transition-all shadow-md">
                 Family
               </button>
             </div>
@@ -135,7 +127,7 @@ const RoomsDetails = async () => {
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4">
-              <button className="bg-[#DFAA5B] hover:bg-[#c2924e] text-white font-medium px-6 py-2 rounded-md transition-all shadow-md">
+              <button className="bg-[#DFAA5B] hover:bg-[#c2924e] cursor-pointer text-white font-medium px-6 py-2 rounded-md transition-all shadow-md">
                 Check Availability
               </button>
             </div>
@@ -144,9 +136,18 @@ const RoomsDetails = async () => {
 
         {/* Property Cards Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4 space-y-1 md:space-y-0">
-          {allHotels.map((hotel, i) => (
-            <PropertyCard key={i} hotel={hotel}/>
+          {currentItems.map((hotel, i) => (
+            <PropertyCard key={i} hotel={hotel} />
           ))}
+        </div>
+        <div className="py-5 md:py-10">
+          <TablePagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            paginate={paginate}
+            itemsPerPage={itemsPerPage}
+            setItemsPerPage={setItemsPerPage}
+          />
         </div>
 
         {/* Services Section */}
