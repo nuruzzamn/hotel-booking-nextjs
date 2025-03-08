@@ -13,16 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Hotel {
+model Hotels {
   id             String  @id @default(uuid())
   image          String
   name           String
   category       String   
   address        String
-  costPerNight   Float
-  availableRooms Int
+  costPerNight   String
+  availableRooms String
   description    String
-  rating         Float   @default(0.0)
+  rating         String   
   active         Boolean @default(true)
   createdAt      DateTime @default(now())
 }

@@ -50,6 +50,31 @@ const ManageHotels = () => {
     if (productId) {
       formData.append("productId", productId.toString());
     }
+
+    const method = productId ? "PUT" : "POST";
+
+    try {
+      const response = await fetch(`/api/hotels`, {
+        method,
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        showSuccessToast(
+          productId
+            ? "Hotel updated successfully!"
+            : "Hotel created successfully!"
+        );
+        resetForm();
+      } else {
+        throw new Error(result.message || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error(error);
+      showErrorToast("Hotel creation failed!");
+    }
   };
 
   const resetForm = () => {
