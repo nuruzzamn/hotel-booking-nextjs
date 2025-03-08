@@ -1,10 +1,17 @@
 "use client";
-import { showErrorToast, showSuccessToast } from "@/utils/toast";
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { GrPowerReset } from "react-icons/gr";
-import { IoBagAddOutline } from "react-icons/io5";
 
-const ManageHotels = () => {
+import { useRouter } from "next/navigation";
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import { IoBagAddOutline } from "react-icons/io5";
+import {
+  MdOutlineAddCircleOutline,
+  MdOutlineRemoveCircleOutline,
+} from "react-icons/md";
+import { GrPowerReset } from "react-icons/gr";
+import Image from "next/image";
+import { showErrorToast, showSuccessToast } from "@/utils/toast";
+
+const UpdateHotel = () => {
   const [hotelId, setHotelId] = useState<number | null>(null);
   const [hotelsName, setHotelsName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -14,6 +21,28 @@ const ManageHotels = () => {
   const [availableRooms, setAvailableRooms] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
   const [rating, setRating] = useState<string>("");
+
+  useEffect(() => {
+    const editHotel = sessionStorage.getItem("editHotel");
+
+    if (editHotel) {
+      const parsedEditHotel = editHotel ? JSON.parse(editHotel) : null;
+      setHotelId(parsedEditHotel.id);
+      setHotelsName(parsedEditHotel.name);
+      setDescription(parsedEditHotel.description);
+      setCategory(parsedEditHotel.category);
+      setAddress(parsedEditHotel.address);
+      setCostPerNight(parsedEditHotel.costPerNight);
+      setAvailableRooms(parsedEditHotel.availableRooms);
+      setRating(parsedEditHotel.rating);
+
+      if (parsedEditHotel.image) {
+        setImage(null);
+      }
+    }
+
+    sessionStorage.removeItem("editProduct");
+  }, []);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -51,11 +80,16 @@ const ManageHotels = () => {
       formData.append("hotelId", hotelId.toString());
     }
 
-    const method = hotelId ? "PUT" : "POST";
+    //tag : If image is selected, add it to form data. If not, pass an empty string
+    if (image) {
+      formData.append("image", image);
+    } else {
+      formData.append("image", ""); // An empty string tells the server to keep the existing image
+    }
 
     try {
       const response = await fetch(`/api/hotels`, {
-        method,
+        method: "PATCH",
         body: formData,
       });
 
@@ -92,6 +126,8 @@ const ManageHotels = () => {
     if (fileInput) {
       fileInput.value = "";
     }
+
+    sessionStorage.removeItem("editProduct");
   };
 
   return (
@@ -270,4 +306,4 @@ const ManageHotels = () => {
   );
 };
 
-export default ManageHotels;
+export default UpdateHotel;
