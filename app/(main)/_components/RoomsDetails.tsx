@@ -1,8 +1,43 @@
 import React from "react";
 import PropertyCard from "./PropertyCard";
 import ServiceFeatures from "./ServiceFeatures";
+import { baseUrl } from "@/lib/utils";
 
-const RoomsDetails = () => {
+interface Hotel {
+  id: string;
+  image: string;
+  name: string;
+  category: string;
+  address?: string;
+  costPerNight: string;
+  availableRooms: string;
+  description: string;
+  rating: string;
+}
+
+const RoomsDetails = async () => {
+  let allHotels: Hotel[] = [];
+
+  try {
+    // Perform the fetch inside the component
+    const response = await fetch(`${baseUrl}/api/hotels`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store", // Ensures no caching for up-to-date data
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch data: ${response.status} ${response.statusText}`
+      );
+    }
+
+    allHotels = await response.json();
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+  }
   return (
     <div className="bg-[#F7F7F7] pt-10">
       <div className="max-w-7xl mx-auto px-2 md:px-6">
@@ -105,9 +140,9 @@ const RoomsDetails = () => {
         </div>
 
         {/* Property Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-4 space-y-1 md:space-y-0">
-          {[...Array(9)].map((_, i) => (
-            <PropertyCard key={i} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4 space-y-1 md:space-y-0">
+          {allHotels.map((hotel, i) => (
+            <PropertyCard key={i} hotel={hotel}/>
           ))}
         </div>
 
