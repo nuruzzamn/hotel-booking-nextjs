@@ -20,7 +20,7 @@ const ReservationContent = () => {
           src={`/img/Frame1.png`}
           alt={`Hotel Reservation`}
           layout="fill"
-          className="object-cover w-full h-full px-6"
+          className="object-cover w-full h-full md:px-6"
           priority
         />
       </div>
