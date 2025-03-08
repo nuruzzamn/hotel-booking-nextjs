@@ -59,13 +59,13 @@ const DashboardNav = () => {
           <span className="inline lg:hidden xl:inline">Hotels</span>
         </Link>
         <Link
-          href={`/dashboard/add-hotels`}
+          href={`/dashboard/manage-hotels`}
           className={`flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary ${
-            pathname.includes("add-hotels") && "bg-muted text-primary"
+            pathname.includes("manage-hotels") && "bg-muted text-primary"
           }`}
         >
           <PackagePlus className="size-5" />
-          <span className="inline lg:hidden xl:inline"> Add Hotels</span>
+          <span className="inline lg:hidden xl:inline"> Manage Hotels</span>
         </Link>
       </>
       {/* 
