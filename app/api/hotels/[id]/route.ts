@@ -8,10 +8,12 @@ interface Params {
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
-    const productId = params.id;
+    // const id = parseInt(params.id);
+
+    const id = parseInt(params.id, 10);
 
     // Check if productId is provided
-    if (!productId) {
+    if (!id) {
       return NextResponse.json(
         { message: "Product ID is required." },
         { status: 400 }
@@ -20,7 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
     // Fetch the product from the database
     const product = await prisma.hotels.findUnique({
-      where: { id: (productId) },
+      where: { id },
     });
 
     // Check if the product exists
@@ -37,7 +39,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     // Catch any unexpected errors
     console.error("Error fetching product:", error);
     return NextResponse.json(
-      { message: "Something went wrong." },
+      { message: "Something went wrong. Cannot find your by id." },
       { status: 500 }
     );
   }

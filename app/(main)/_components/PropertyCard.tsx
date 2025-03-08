@@ -1,8 +1,9 @@
 import Rating from "@/components/Rating";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Hotel {
-  id: string;
+  id: number;
   image: string;
   name: string;
   category: string;
@@ -59,10 +60,14 @@ export default function PropertyCard({ hotel: hotel }: { hotel: Hotel }) {
         </div> */}
         <Rating rating={Number(hotel?.rating)} />
 
-        {/* Action Button */}
-        <button className="mt-2 w-full bg-yellow-700 text-white py-2 rounded-lg font-medium hover:bg-yellow-800 transition">
-          View Details
-        </button>
+        <Link
+          href={`/hotel/${hotel?.id}`}
+        >
+          {/* Action Button */}
+          <button className="mt-2 w-full bg-yellow-700 text-white py-2 rounded-lg font-medium hover:bg-yellow-800 transition">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );

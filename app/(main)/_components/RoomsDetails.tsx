@@ -4,7 +4,7 @@ import ServiceFeatures from "./ServiceFeatures";
 import { baseUrl } from "@/lib/utils";
 
 interface Hotel {
-  id: string;
+  id: number;
   image: string;
   name: string;
   category: string;
@@ -38,6 +38,9 @@ const RoomsDetails = async () => {
   } catch (error) {
     console.error("Error fetching home data:", error);
   }
+
+  console.log("allHotels", allHotels);
+  
   return (
     <div className="bg-[#F7F7F7] pt-10">
       <div className="max-w-7xl mx-auto px-2 md:px-6">

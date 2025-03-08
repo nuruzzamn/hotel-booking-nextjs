@@ -19,7 +19,16 @@ export async function POST(req: Request) {
     const rating = data.get("rating") as string;
 
     // Validation
-    if (!name || !category || !address || !costPerNight || !availableRooms || !description || !rating || !imageFile) {
+    if (
+      !name ||
+      !category ||
+      !address ||
+      !costPerNight ||
+      !availableRooms ||
+      !description ||
+      !rating ||
+      !imageFile
+    ) {
       return NextResponse.json(
         { message: "All fields are required." },
         { status: 400 }
@@ -100,7 +109,7 @@ export async function DELETE(req: Request) {
   try {
     await prisma.hotels.update({
       where: {
-        id: (id),
+        id: id,
       },
       data: {
         active: false,
@@ -123,10 +132,19 @@ export async function DELETE(req: Request) {
 // tag : update hotels
 export async function PATCH(req: Request) {
   try {
-    const data = await req.formData(); 
+    const data = await req.formData();
+
+    // Extract and convert ID
+    const id = Number(data.get("hotelId"));
+    if (isNaN(id)) {
+      return NextResponse.json(
+        { message: "Invalid Hotel ID." },
+        { status: 400 }
+      );
+    }
 
     // Extract data from form
-    const id = data.get("hotelId") as string;
+    // const id = data.get("hotelId") as number;
     const imageFile = data.get("image") as File;
     const name = data.get("name") as string;
     const category = data.get("category") as string;
@@ -145,7 +163,7 @@ export async function PATCH(req: Request) {
 
     // Check if the hotel exists
     const existingProduct = await prisma.hotels.findUnique({
-      where: { id: (id) },
+      where: { id: id },
     });
 
     if (!existingProduct) {
@@ -180,7 +198,7 @@ export async function PATCH(req: Request) {
 
     // Update hotel details
     const updatedProduct = await prisma.hotels.update({
-      where: { id: (id) },
+      where: { id: id },
       data: {
         image: imagePath,
         name: name || existingProduct.name,
